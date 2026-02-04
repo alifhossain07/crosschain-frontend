@@ -1,0 +1,42 @@
+name: philanthrocross
+region: nyc
+services:
+  - name: frontend
+    github:
+      repo: YOUR_GITHUB_USERNAME/philanthroprocross
+      branch: main
+      deploy_on_push: true
+    source_dir: frontend
+    build_command: npm install && npm run build
+    run_command: npm start
+    environment_slug: node-js
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    http_port: 3000
+    routes:
+      - path: /
+    envs:
+      - key: NEXT_PUBLIC_SENDER_CONTRACT_ADDRESS
+        value: 0x92DDd525e67b06557f4129fCb677Ec67DDEEdf90
+        scope: RUN_TIME
+        type: SECRET
+      - key: NEXT_PUBLIC_RECEIVER_CONTRACT_ADDRESS
+        value: 0xcdfFbcfF4C350d0B72A4319cfa3c4a36DBe7c439
+        scope: RUN_TIME
+        type: SECRET
+      - key: NEXT_PUBLIC_SEPOLIA_CHAIN_ID
+        value: "11155111"
+        scope: RUN_TIME
+        type: SECRET
+      - key: NEXT_PUBLIC_AMOY_CHAIN_ID
+        value: "80002"
+        scope: RUN_TIME
+        type: SECRET
+      - key: NEXT_PUBLIC_THIRDWEB_CLIENT_ID
+        value: 43cda2142f3f044a74d4081488ba5bde
+        scope: RUN_TIME
+        type: SECRET
+      - key: NODE_ENV
+        value: production
+        scope: RUN_TIME
+        type: SECRET
